@@ -1,0 +1,9 @@
+# Vagrant
+.vagrant/
+
+# Mac
+*.DS_Store
+
+# Local files
+
+app/do_we_get_tacos_today/
