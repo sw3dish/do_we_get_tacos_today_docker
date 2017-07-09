@@ -1,0 +1,23 @@
+version: "2"
+services:
+  app:
+    extends:
+      file: docker-compose.yml
+      service: app
+    env_file:
+      - ./do_we_get_tacos_today/.env.dev
+    volumes:
+      - /vagrant/do_we_get_tacos_today:/srv/www
+    command: bundle exec rerun -b --force-polling -- puma -C puma.rb
+  web:
+    extends:
+      file: docker-compose.yml
+      service: web
+    volumes:
+      - /var/log/nginx:/var/log/nginx
+    depends_on:
+      - app
+    volumes_from:
+      - app
+    links:
+      - app
