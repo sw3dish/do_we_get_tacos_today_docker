@@ -1,0 +1,23 @@
+version: "2"
+services:
+  app:
+    extends:
+      file: docker-compose.yml
+      service: app
+    env_file:
+      - ./do_we_get_tacos_today/.env.prod
+    volumes:
+      - /home/deployer/do_we_get_tacos_today-docker/do_we_get_tacos_today:/srv/www
+    restart: always
+    command: bundle exec puma -C puma.rb
+  web:
+    extends:
+      file: docker-compose.yml
+      service: web
+    volumes:
+      - /var/log/nginx:/var/log/nginx
+    links:
+      - app
+    restart: always
+    depends_on:
+      - app
