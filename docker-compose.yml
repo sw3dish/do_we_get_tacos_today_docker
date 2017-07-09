@@ -1,0 +1,12 @@
+version: "2"
+services:
+  app:
+    build: ./app
+    env_file:
+      - ./do_we_get_tacos_today/.env
+    expose:
+      - "8000"
+  web:
+    build: ./web
+    ports:
+      - "80:80"
