@@ -7,7 +7,7 @@ services:
     env_file:
       - ./do_we_get_tacos_today/.env.prod
     volumes:
-      - /home/deployer/do_we_get_tacos_today-docker/do_we_get_tacos_today:/srv/www
+      - /home/deployer/do_we_get_tacos_today:/srv/www
     restart: always
     command: bundle exec puma -C puma.rb
   web:
