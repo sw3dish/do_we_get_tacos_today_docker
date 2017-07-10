@@ -6,6 +6,7 @@ services:
       service: app
     env_file:
       - ./do_we_get_tacos_today/.env.dev
+      - ./do_we_get_tacos_today/.env
     volumes:
       - /vagrant/do_we_get_tacos_today:/srv/www
     command: bundle exec rerun -b --force-polling -- puma -C puma.rb

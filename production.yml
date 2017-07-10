@@ -5,7 +5,8 @@ services:
       file: docker-compose.yml
       service: app
     env_file:
-      - ./do_we_get_tacos_today/.env.prod
+      - ../do_we_get_tacos_today/.env.prod
+      - ../do_we_get_tacos_today/.env
     volumes:
       - /home/deployer/do_we_get_tacos_today:/srv/www
     restart: always
