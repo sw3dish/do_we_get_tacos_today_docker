@@ -40,6 +40,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder '.', '/vagrant/'
+  config.vm.synced_folder '../do_we_get_tacos_today', '/vagrant/do_we_get_tacos_today'
   # config.vm.synced_folder "../data", "/vagrant_data"
 
   # Provider-specific configuration so you can fine-tune various
@@ -66,6 +67,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision 'shell', inline: 'sudo apt-get update'
   # copy over our Gemfile from the codebase
   config.vm.provision 'shell', inline: 'cp -v /vagrant/do_we_get_tacos_today/Gemfile /vagrant/app/'
+
+  config.vm.provision :shell, :inline => "sudo rm /etc/localtime && sudo ln -s /usr/share/zoneinfo/US/Eastern /etc/localtime", run: "always"
 
   config.vm.provision :docker
 
